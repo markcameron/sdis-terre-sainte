@@ -34,17 +34,17 @@ return [
                     ],
                     'max_items' => 5,
                 ],
-                // 'home_emergency_numbers' => [
-                //     'name' => 'Home Emergency Numbers',
-                //     'bucketables' => [
-                //         [
-                //             'module' => 'emergencyNumbers',
-                //             'name' => 'Emergency Numbers',
-                //             'scopes' => ['published' => true],
-                //         ],
-                //     ],
-                //     'max_items' => 4,
-                // ],
+                'home_emergency_numbers' => [
+                    'name' => 'Home Emergency Numbers',
+                    'bucketables' => [
+                        [
+                            'module' => 'emergencyNumbers',
+                            'name' => 'Emergency Numbers',
+                            'scopes' => ['published' => true],
+                        ],
+                    ],
+                    'max_items' => 4,
+                ],
             ],
         ],
     ],
