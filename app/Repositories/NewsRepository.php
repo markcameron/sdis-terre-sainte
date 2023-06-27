@@ -26,4 +26,13 @@ class NewsRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
+    public function recent()
+    {
+        return $this->model
+            ->published()
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+    }
 }

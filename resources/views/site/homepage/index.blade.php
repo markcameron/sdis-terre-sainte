@@ -1,11 +1,11 @@
 @extends('layouts.site')
 
 @section('content')
-    {{-- <x-blade.homepage-hero></x-blade.homepage-hero>
+    <x-blade.homepage-hero></x-blade.homepage-hero>
     <x-blade.stats></x-blade.stats>
     <x-blade.news-recent></x-blade.news-recent>
     <x-blade.interventions></x-blade.interventions>
-    <x-blade.emergency-numbers></x-blade.emergency-numbers> --}}
+    <x-blade.emergency-numbers></x-blade.emergency-numbers>
 
     <section class="grid md:grid-cols-2">
         <div class="relative" id="intervention-sectors">
