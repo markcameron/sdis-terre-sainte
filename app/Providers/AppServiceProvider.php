@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use BeyondCode\Mailbox\InboundEmail;
+use App\Services\InterventionService;
 use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Facades\TwillAppSettings;
+use BeyondCode\Mailbox\Facades\Mailbox;
 use Illuminate\Support\ServiceProvider;
 use A17\Twill\Services\Settings\SettingsGroup;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -62,5 +65,13 @@ class AppServiceProvider extends ServiceProvider
             'documents' => 'App\Models\Document',
             'pages' => 'App\Models\Page',
         ]);
+
+        Mailbox::subject('INFO MOBILISATION', function (InboundEmail $email) {
+            resolve(InterventionService::class)->createFromEmail($email);
+        });
+
+        Mailbox::fallback(function (InboundEmail $email) {
+            // Just log it in DB `mailbox_inbound_emails`
+        });
     }
 }
