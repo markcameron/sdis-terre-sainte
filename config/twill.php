@@ -12,17 +12,17 @@ return [
         'homepage' => [
             'name' => 'Home Stats',
             'buckets' => [
-                // 'home_heros' => [
-                //     'name' => 'Home Hero',
-                //     'bucketables' => [
-                //         [
-                //             'module' => 'homepageHeroes',
-                //             'name' => 'Homepage Heroes',
-                //             'scopes' => ['published' => true],
-                //         ],
-                //     ],
-                //     'max_items' => 10,
-                // ],
+                'home_heros' => [
+                    'name' => 'Home Hero',
+                    'bucketables' => [
+                        [
+                            'module' => 'homepageHeroes',
+                            'name' => 'Homepage Heroes',
+                            'scopes' => ['published' => true],
+                        ],
+                    ],
+                    'max_items' => 10,
+                ],
                 'home_stats' => [
                     'name' => 'Home Stats',
                     'bucketables' => [

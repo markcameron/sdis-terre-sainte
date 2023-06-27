@@ -8,3 +8,4 @@ use A17\Twill\Facades\TwillRoutes;
 TwillRoutes::module('news');
 TwillRoutes::module('stats');
 TwillRoutes::module('emergencyNumbers');
+TwillRoutes::module('homepageHeroes');

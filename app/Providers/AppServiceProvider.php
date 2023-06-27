@@ -38,7 +38,8 @@ class AppServiceProvider extends ServiceProvider
                 ->setChildren([
                     NavigationLink::make()->forModule('news'),
                     NavigationLink::make()->forModule('stats'),
-                    NavigationLink::make()->forModule('emergencyNumbers')
+                    NavigationLink::make()->forModule('emergencyNumbers'),
+                    NavigationLink::make()->forModule('homepageHeroes'),
                 ])
         );
 
