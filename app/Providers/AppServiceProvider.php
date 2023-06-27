@@ -6,6 +6,7 @@ use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Facades\TwillAppSettings;
 use Illuminate\Support\ServiceProvider;
 use A17\Twill\Services\Settings\SettingsGroup;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use A17\Twill\View\Components\Navigation\NavigationLink;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,7 +25,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('news'),
+            NavigationLink::make()
+                ->title('Features')
+                ->forRoute('twill.featured.homepage'),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()
+                ->title('Contenu')
+                ->forRoute('twill.news.index')
+                ->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('news'),
+                    NavigationLink::make()->forModule('stats'),
+                ])
         );
 
         TwillNavigation::addLink(
@@ -36,5 +50,13 @@ class AppServiceProvider extends ServiceProvider
                 ->name('site-settings')
                 ->label('Site settings')
         );
+
+        Relation::morphMap([
+            'stats' => 'App\Models\Stat',
+            'emergencyNumbers' => 'App\Models\EmergencyNumber',
+            'homepageHeroes' => 'App\Models\HomepageHero',
+            'documents' => 'App\Models\Document',
+            'pages' => 'App\Models\Page',
+        ]);
     }
 }
