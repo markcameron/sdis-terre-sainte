@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  app:
+    container_name: twill
+    restart: unless-stopped
+    image: hub.devfactory.ch/devfactory/docker/dev/laravel-8.2:latest
+    networks:
+      - mysql
+      - mariadb
+      - redis
+      - traefik
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+      - LOG_CHANNEL=stderr
+    volumes:
+      - ./:/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.twill.rule=Host(`twill.localhost`)"
+      - "traefik.http.routers.twill.entrypoints=web"
+      - "--entrypoints.web.address=:8000"
+
+networks:
+  mysql:
+    external: true
+  mariadb:
+    external: true
+  redis:
+    external: true
+  traefik:
+    external: true
