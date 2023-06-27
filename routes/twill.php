@@ -10,3 +10,4 @@ TwillRoutes::module('stats');
 TwillRoutes::module('emergencyNumbers');
 TwillRoutes::module('homepageHeroes');
 TwillRoutes::module('interventions');
+TwillRoutes::module('documents');
