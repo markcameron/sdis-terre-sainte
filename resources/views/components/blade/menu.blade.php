@@ -1,7 +1,7 @@
 @foreach ($tree as $node)
     @if (empty($node['children']))
-        <x-menu-link :link="$node" :type="$type"></x-menu-link>
+        <x-blade.menu-link :link="$node" :type="$type"></x-blade.menu-link>
     @else
-        <x-menu-dropdown :node="$node" :type="$type"></x-menu-link>
+        <x-blade.menu-dropdown :node="$node" :type="$type"></x-blade.menu-link>
     @endif
 @endforeach
