@@ -26,7 +26,7 @@ class NewsController extends Controller
         $news = $this->repository->forSlug($slug);
         abort_unless($news, 404, 'News ');
 
-        return view('front.news.show', [
+        return view('site.news.show', [
             'news' => $news,
         ]);
     }

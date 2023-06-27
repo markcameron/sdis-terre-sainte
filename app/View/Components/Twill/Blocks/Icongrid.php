@@ -23,8 +23,8 @@ class Icongrid extends TwillBlockComponent
                 ->fields([
                     Input::make()->name('icon'),
                     Input::make()->name('icon-color')->default('black'),
-                    // Input::make()->name('title'),
-                    // Input::make()->name('title-color')->default('black'),
+                    Input::make()->name('title'),
+                    Input::make()->name('title-color')->default('black'),
                 ]),
         ]);
     }

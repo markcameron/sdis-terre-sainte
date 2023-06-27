@@ -15,7 +15,14 @@ use A17\Twill\Models\Model;
 
 class News extends Model implements Sortable
 {
-    use HasBlocks, HasTranslation, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, HasNesting;
+    use HasBlocks;
+    use HasTranslation;
+    use HasSlug;
+    use HasMedias;
+    use HasFiles;
+    use HasRevisions;
+    use HasPosition;
+    use HasNesting;
 
     protected $fillable = [
         'published',
@@ -23,15 +30,42 @@ class News extends Model implements Sortable
         'description',
         'position',
     ];
-    
+
     public $translatedAttributes = [
         'title',
         'description',
         'active',
     ];
-    
+
     public $slugAttributes = [
         'title',
     ];
-    
+
+    public $mediasParams = [
+        'cover' => [
+            'orig' => [
+                [
+                    'name' => 'orig',
+                ],
+            ],
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'teaser' => [
+                [
+                    'name' => 'teaser',
+                    'ratio' => 3 / 2,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 3 / 2,
+                ],
+            ],
+        ],
+    ];
 }

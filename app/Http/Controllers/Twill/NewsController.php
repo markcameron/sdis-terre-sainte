@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Services\Forms\Form;
 use A17\Twill\Services\Forms\Fields\Input;
+use A17\Twill\Services\Forms\Fields\Medias;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
@@ -32,7 +33,15 @@ class NewsController extends BaseModuleController
         $form = parent::getForm($model);
 
         $form->add(
-            Input::make()->name('description')->label('Description')->translatable(),
+            Input::make()->name('teaser')->label('Teaser')->maxLength(255),
+        );
+
+        $form->add(
+            Medias::make()
+                ->name('cover')
+                ->label(twillTrans('Cover'))
+                ->note(twillTrans('Add one file Media'))
+                ->max(1)
         );
 
         $form->add(
