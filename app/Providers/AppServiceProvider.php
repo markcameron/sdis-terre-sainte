@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use A17\Twill\Facades\TwillNavigation;
+use A17\Twill\Facades\TwillAppSettings;
+use Illuminate\Support\ServiceProvider;
+use A17\Twill\Services\Settings\SettingsGroup;
 use A17\Twill\View\Components\Navigation\NavigationLink;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
     {
         TwillNavigation::addLink(
             NavigationLink::make()->forModule('news')
+        );
+
+        TwillAppSettings::registerSettingsGroup(
+            SettingsGroup::make()
+                ->name('site-settings')
+                ->label('Site settings')
         );
     }
 }

@@ -6,6 +6,8 @@ services:
     container_name: twill
     restart: unless-stopped
     image: hub.devfactory.ch/devfactory/docker/dev/laravel-8.2:latest
+    ports:
+      - '${VITE_PORT:-5174}:${VITE_PORT:-5174}'
     networks:
       - mysql
       - mariadb
@@ -22,6 +24,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.twill.rule=Host(`twill.localhost`)"
       - "traefik.http.routers.twill.entrypoints=web"
+      - "traefik.http.services.twill.loadbalancer.server.port=8000"
       - "--entrypoints.web.address=:8000"
 
 networks:

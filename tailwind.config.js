@@ -7,6 +7,7 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     "./app/View/Components/*.php",
+    "./app/View/Components/**/*.php",
   ],
 
   safelist: [
