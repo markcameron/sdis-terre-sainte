@@ -9,7 +9,8 @@ use App\Models\Document;
 
 class DocumentRepository extends ModuleRepository
 {
-    use HandleFiles, HandleRevisions;
+    use HandleFiles;
+    use HandleRevisions;
 
     public function __construct(Document $model)
     {

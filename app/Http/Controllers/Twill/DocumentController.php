@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Services\Forms\Form;
+use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
-use A17\Twill\Services\Forms\Fields\Input;
-use A17\Twill\Services\Forms\Form;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
+use A17\Twill\Services\Forms\Fields\Files;
 
 class DocumentController extends BaseModuleController
 {
@@ -30,6 +31,14 @@ class DocumentController extends BaseModuleController
 
         $form->add(
             Input::make()->name('description')->label('Description')
+        );
+
+        $form->add(
+            Files::make()
+                ->name('document')
+                ->label(twillTrans('Document'))
+                ->note(twillTrans('Ajouter un document'))
+                ->max(1)
         );
 
         return $form;

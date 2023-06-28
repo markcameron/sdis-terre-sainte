@@ -20,4 +20,8 @@ class Document extends Model implements Sortable
         'description',
         'position',
     ];
+
+    public $filesParams = [
+        'document',
+    ];
 }
