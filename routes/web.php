@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\InterventionsController;
 
 /*
@@ -26,3 +29,14 @@ Route::controller(NewsController::class)->group(function () {
         Route::get('{slug}', 'show')->name('show');
     });
 });
+
+Route::get('documents', [DocumentsController::class, 'index'])->name('documents');
+
+Route::controller(ContactController::class)->group(function () {
+    Route::name('contact.')->prefix('contact')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('submit', 'submit')->name('submit');
+    });
+});
+
+Route::get('{slug}', [PagesController::class, 'show'])->name('page.show');
