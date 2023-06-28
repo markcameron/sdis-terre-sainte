@@ -40,17 +40,25 @@ class AppServiceProvider extends ServiceProvider
                 ->doNotAddSelfAsFirstChild()
                 ->setChildren([
                     NavigationLink::make()->forModule('news'),
-                    NavigationLink::make()->forModule('stats'),
-                    NavigationLink::make()->forModule('emergencyNumbers'),
-                    NavigationLink::make()->forModule('homepageHeroes'),
-                    NavigationLink::make()->forModule('interventions'),
                     NavigationLink::make()->forModule('documents'),
                     NavigationLink::make()->forModule('pages'),
                 ])
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('stats')
+            NavigationLink::make()
+                ->title('Autres')
+                ->forRoute('twill.stats.index')
+                ->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('homepageHeroes')->title("Homepage heroes"),
+                    NavigationLink::make()->forModule('stats')->title("Statistiques"),
+                    NavigationLink::make()->forModule('emergencyNumbers')->title("Numéros d'urgence"),
+                ])
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('interventions'),
         );
 
         TwillAppSettings::registerSettingsGroup(
