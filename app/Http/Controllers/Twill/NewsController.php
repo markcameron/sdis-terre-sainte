@@ -29,6 +29,8 @@ class NewsController extends BaseModuleController
      */
     public function getForm(TwillModelContract $model): Form
     {
+        $this->permalinkBase = 'actualites';
+
         $form = parent::getForm($model);
 
         $form->add(
