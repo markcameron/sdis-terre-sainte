@@ -24,7 +24,6 @@ class Menu extends Component
      */
     public function render()
     {
-        // dd(Navigation::make()->tree());
         return view('components.blade.menu', [
             'tree' => Navigation::make()->tree(),
         ]);

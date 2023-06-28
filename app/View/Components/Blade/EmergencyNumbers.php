@@ -25,7 +25,7 @@ class EmergencyNumbers extends Component
     public function render()
     {
         return view('components.blade.emergency-numbers', [
-            'numbers' => [], //Feature::getForBucket('home_emergency_numbers'),
+            'numbers' => Feature::getForBucket('home_emergency_numbers'),
         ]);
     }
 }

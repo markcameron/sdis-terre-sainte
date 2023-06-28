@@ -25,7 +25,7 @@ class Stats extends Component
     public function render()
     {
         return view('components.blade.stats', [
-            'stats' => [], //Feature::getForBucket('home_stats'),
+            'stats' => Feature::getForBucket('home_stats'),
         ]);
     }
 }
