@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\InterventionExample;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
@@ -18,6 +20,11 @@ use App\Http\Controllers\InterventionsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Uncomment to test intervention email processing
+// Route::get('test-mail', function () {
+//     Mail::to('alarmes-sdis@kram.xyz')->send(new InterventionExample());
+// });
 
 Route::get('/', HomepageController::class)->name('homepage');
 
