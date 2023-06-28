@@ -13,6 +13,7 @@ services:
       - mariadb
       - redis
       - traefik
+      - mailpit
     environment:
       - DB_HOST=mariadb
       - DB_USERNAME=root
@@ -33,6 +34,8 @@ networks:
   mariadb:
     external: true
   redis:
+    external: true
+  mailpit:
     external: true
   traefik:
     external: true

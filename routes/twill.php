@@ -11,3 +11,4 @@ TwillRoutes::module('emergencyNumbers');
 TwillRoutes::module('homepageHeroes');
 TwillRoutes::module('interventions');
 TwillRoutes::module('documents');
+TwillRoutes::module('pages');

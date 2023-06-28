@@ -45,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
                     NavigationLink::make()->forModule('homepageHeroes'),
                     NavigationLink::make()->forModule('interventions'),
                     NavigationLink::make()->forModule('documents'),
+                    NavigationLink::make()->forModule('pages'),
                 ])
         );
 
