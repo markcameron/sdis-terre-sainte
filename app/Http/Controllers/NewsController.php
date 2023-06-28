@@ -12,7 +12,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        return view('front.news.index', [
+        return view('site.news.index', [
             'news' => $this->repository->get(
                 scopes: ['published' => null],
                 orders: ['created_at' => 'DESC'],

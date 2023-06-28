@@ -9,13 +9,12 @@ use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use A17\Twill\Services\Forms\Fields\BlockEditor;
 use A17\Twill\Models\Contracts\TwillModelContract;
-use A17\Twill\Http\Controllers\Admin\NestedModuleController as BaseModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 
 class NewsController extends BaseModuleController
 {
     protected $moduleName = 'news';
-    protected $showOnlyParentItemsInBrowsers = true;
-    protected $nestedItemsDepth = 1;
+
     /**
      * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
      */
