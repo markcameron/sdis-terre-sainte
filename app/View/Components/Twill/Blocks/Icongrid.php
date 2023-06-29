@@ -28,4 +28,9 @@ class Icongrid extends TwillBlockComponent
                 ]),
         ]);
     }
+
+    public static function getBlockIcon(): string
+    {
+        return 'fix-grid';
+    }
 }

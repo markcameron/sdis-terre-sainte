@@ -51,4 +51,9 @@ class Title extends TwillBlockComponent
                 ]),
         ]);
     }
+
+    public static function getBlockIcon(): string
+    {
+        return 'wysiwyg_header-2';
+    }
 }

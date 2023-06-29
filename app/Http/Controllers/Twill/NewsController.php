@@ -46,7 +46,12 @@ class NewsController extends BaseModuleController
         );
 
         $form->add(
-            BlockEditor::make()->blocks(['app-icongrid'])
+            BlockEditor::make()->blocks([
+                'text',
+                'image',
+                'app-title',
+                'app-icongrid',
+            ])
         );
 
         return $form;
