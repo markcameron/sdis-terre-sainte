@@ -32,6 +32,9 @@ class Alert extends Component
         ]);
     }
 
+    /**
+     * Returns the background color class for the alert.
+     */
     private function alertBackgroundColor(): string
     {
         return match ($this->type) {
@@ -41,6 +44,9 @@ class Alert extends Component
         };
     }
 
+    /**
+     * Returns the foreground text color class for the alert.
+     */
     private function alertForegroundColor(): string
     {
         return match ($this->type) {
@@ -50,6 +56,9 @@ class Alert extends Component
         };
     }
 
+    /**
+     * Returns the icon to use for the alert.
+     */
     private function icon(): string
     {
         return match ($this->type) {
