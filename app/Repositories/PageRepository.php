@@ -10,7 +10,9 @@ use App\Models\Page;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleRevisions;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleRevisions;
 
     public function __construct(Page $model)
     {

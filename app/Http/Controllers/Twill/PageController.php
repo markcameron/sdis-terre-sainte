@@ -13,6 +13,7 @@ use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
 class PageController extends BaseModuleController
 {
     protected $moduleName = 'pages';
+
     /**
      * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
      */
