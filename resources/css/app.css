@@ -63,3 +63,8 @@
   color: rgb(181 18 19 / var(--tw-text-opacity));
   font-weight: 700;
 }
+
+ul {
+    list-style-type: disc;
+    margin-left: 2em;
+}
