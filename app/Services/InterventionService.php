@@ -12,7 +12,7 @@ class InterventionService
 {
     public function createFromEmail(InboundEmail $email): void
     {
-        Log::warning('INTERVENTION DEBUG - MAIL HTML: ', [
+        Log::debug('INTERVENTION DEBUG - MAIL HTML: ', [
             'html' => $email->html()
         ]);
 
@@ -20,6 +20,10 @@ class InterventionService
         $message = Str::replace(["\r", "\n"], ' ', $email->html());
         // Remove double or more consecutive spaces
         $message = Str::of($message)->replaceMatches('/ {2,}/', ' ');
+
+        Log::debug('INTERVENTION DEBUG - MESSAGE: ', [
+            'message' => $message,
+        ]);
 
         $intervention = Intervention::create([
             'title' => $message,
