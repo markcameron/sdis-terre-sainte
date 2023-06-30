@@ -24,4 +24,9 @@ class Chart extends TwillBlockComponent
                 ->rows(10)
         ]);
     }
+
+    public static function getBlockIcon(): string
+    {
+        return 'b-activity';
+    }
 }
