@@ -51,6 +51,7 @@ class NewsController extends BaseModuleController
                 'image',
                 'app-title',
                 'app-icongrid',
+                'app-chart',
             ])
         );
 
