@@ -15,6 +15,8 @@ class Intervention extends Model
         'published',
         'title',
         'description',
+        'date',
+        'type',
+        'village',
     ];
-
 }
