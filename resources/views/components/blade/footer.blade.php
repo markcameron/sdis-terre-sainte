@@ -64,7 +64,7 @@
                     </ul>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 gap-8 xl:text-right">
                     <div>
                         <h3 class="text-md font-semibold leading-6 text-gray-100">Outils</h3>
                         <ul role="list" class="mt-6 space-y-4">
@@ -85,26 +85,6 @@
                                     class="text-sm leading-6 text-gray-50 hover:text-gray-100">Cartolacôte</a>
                             </li>
 
-                        </ul>
-                    </div>
-
-                    <div class="md:mt-0">
-                        <h3 class="text-sm font-semibold leading-6 text-gray-100">Legal</h3>
-                        <ul role="list" class="mt-6 space-y-4">
-                            <li>
-                                <a href="#"
-                                    class="text-sm leading-6 text-gray-50 hover:text-gray-100">Claim</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-sm leading-6 text-gray-50 hover:text-gray-100">Privacy</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-sm leading-6 text-gray-50 hover:text-gray-100">Terms</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
