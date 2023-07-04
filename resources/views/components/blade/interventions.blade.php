@@ -10,6 +10,9 @@
             </tr>
         </thead>
         <tbody class="block text-left text-lg">
+            @php
+            app()->setLocale('fr')
+            @endphp
             @foreach ($interventions as $intervention)
             <tr class="flex flex-wrap border-b border-gray-200 py-4">
                 <th class="w-full lg:w-1/2 xl:w-1/3" scope="row">{{ $intervention->type }}</th>
