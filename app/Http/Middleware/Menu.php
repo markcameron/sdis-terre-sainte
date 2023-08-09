@@ -25,7 +25,7 @@ class Menu
             //         ->add('Présentation', route('homepage'))
             //         ->add('Véhicules', route('homepage'));
             // })
-            // ->add('Documents', route('documents'))
+            ->add('Documents', route('documents'))
             ->add('Devenir Sapeur Pompier', 'devenir-sapeur-pompier')
             ->add('Contact', route('contact.index'));
 
