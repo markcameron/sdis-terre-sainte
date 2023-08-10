@@ -26,7 +26,7 @@ class Menu
             //         ->add('Véhicules', route('homepage'));
             // })
             ->add('Documents', route('documents'))
-            ->add('Devenir Sapeur Pompier', 'devenir-sapeur-pompier')
+            ->add('Devenir Sapeur Pompier Volontaire', 'devenir-sapeur-pompier-volontaire')
             ->add('Contact', route('contact.index'));
 
         return $next($request);
