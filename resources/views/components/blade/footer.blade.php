@@ -53,7 +53,7 @@
                                 sapeurs-pompiers (FVSP)</a>
                         </li>
                         <li>
-                            <a href="https://www.swissfire.ch/fr/"
+                            <a href="https://www.swissfire.ch/home-fr"
                                 class="text-sm leading-6 text-gray-50 hover:text-gray-100">Fédération suisse des
                                 sapeurs-pompiers (FSSP)</a>
                         </li>
