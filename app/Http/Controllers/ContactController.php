@@ -22,7 +22,10 @@ class ContactController extends Controller
 
     public function submit(ContactRequest $request)
     {
-        Mail::to('mark.cameron@sdis-ts.ch')->send(new ContactFormSubmission($request->validated()));
+        Mail::to(collect([
+            config('sdis.contact_mails.first'),
+            config('sdis.contact_mails.second'),
+        ])->filter())->send(new ContactFormSubmission($request->validated()));
 
         return redirect()->back()->with('success', 'Merci pour votre soumission!');
     }
