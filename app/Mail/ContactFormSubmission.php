@@ -31,7 +31,8 @@ class ContactFormSubmission extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address($this->data['email'], $this->data['firstName'] . ' ' . $this->data['lastName']),
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
+            replyTo: new Address($this->data['email'], $this->data['firstName'] . ' ' . $this->data['lastName']),
             subject: 'SDIS TS: Formulaire de contact',
         );
     }
