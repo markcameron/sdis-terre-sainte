@@ -39,6 +39,8 @@
             <form action="{{ route('contact.submit') }}" class="mb-16 lg:w-1/2 xl:w-2/3" method="POST">
                 @csrf
 
+                @honeypot
+
                 @if (session('success'))
                     <x-blade.alert type="success" class="mb-4">
                         <h3 class="text-sm font-medium text-green-800">{{ session('success') }}</h3>
