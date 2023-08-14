@@ -46,15 +46,15 @@ jobs:
         path: artifacts.tar
         retention-days: 1
 
-  deployStaging:
-    name: Deploy to Staging
+  deploy:
+    name: Deploy to Production
     # permissions:
     #   contents: none
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: "staging"
-      url: https://new.sdis-ts.ch
+      name: "production"
+      url: https://www.sdis-ts.ch
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -71,7 +71,7 @@ jobs:
         run: ls -la
 
       # rsync deploy
-      - name: rsync deployment staging
+      - name: rsync deployment production
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -rtu --delete --specials --exclude-from='.rsyncignore'
