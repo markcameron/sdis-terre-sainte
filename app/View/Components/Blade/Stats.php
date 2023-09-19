@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Blade;
 
+use App\Models\Intervention;
 use A17\Twill\Models\Feature;
 use Illuminate\View\Component;
 
@@ -26,6 +27,7 @@ class Stats extends Component
     {
         return view('components.blade.stats', [
             'stats' => Feature::getForBucket('home_stats'),
+            'interventionCount' => Intervention::whereBetween('date', [now()->startOfYear(), now()->endOfYear()])->count(),
         ]);
     }
 }
