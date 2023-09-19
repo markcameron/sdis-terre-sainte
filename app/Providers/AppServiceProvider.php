@@ -80,10 +80,6 @@ class AppServiceProvider extends ServiceProvider
             resolve(InterventionService::class)->createFromEmail($email);
         });
 
-        Mailbox::subject('Fwd: INFO MOBILISATION', function (InboundEmail $email) {
-            resolve(InterventionService::class)->createFromEmail($email);
-        });
-
         Mailbox::fallback(function (InboundEmail $email) {
             // Just log it in DB `mailbox_inbound_emails`
         });
