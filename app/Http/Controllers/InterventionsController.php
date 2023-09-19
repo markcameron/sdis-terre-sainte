@@ -16,11 +16,7 @@ class InterventionsController extends Controller
     public function __invoke(Request $request, InterventionRepository $interventionRepository)
     {
         return view('site.interventions.index', [
-            'interventions' => $interventionRepository->get(
-                scopes: ['published' => null],
-                orders: ['created_at' => 'DESC'],
-                perPage: 25,
-            ),
+            'interventions' => $interventionRepository->groupedByMonthForYear(2023),
         ]);
     }
 }

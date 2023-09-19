@@ -20,4 +20,13 @@ class InterventionRepository extends ModuleRepository
             ->take(5)
             ->get();
     }
+
+    public function groupedByMonthForYear(string $year)
+    {
+        return $this->model
+            ->published()
+            ->orderBy('date', 'desc')
+            ->get()
+            ->groupBy(fn ($row) => $row->date->format('Y-m'));
+    }
 }
