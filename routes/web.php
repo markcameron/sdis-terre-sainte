@@ -1,5 +1,6 @@
 <?php
 
+use Aws\Middleware;
 use App\Mail\InterventionExample;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ImportsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\InterventionsController;
@@ -44,6 +46,13 @@ Route::controller(ContactController::class)->group(function () {
     Route::name('contact.')->prefix('contact')->group(function () {
         Route::get('', 'index')->name('index');
         Route::post('submit', 'submit')->name('submit')->middleware(ProtectAgainstSpam::class);
+    });
+});
+
+Route::controller(ImportsController::class)->group(function () {
+    Route::name('imports.')->prefix('imports/interventions')->middleware('twill_auth:twill_users')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('submit', 'submit')->name('submit');
     });
 });
 

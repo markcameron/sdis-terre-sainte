@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use App\Enums\Village;
 use Illuminate\Support\Str;
 use App\Models\Intervention;
@@ -31,6 +32,31 @@ class InterventionService
             'type' => $this->extractType($message),
             'village' => $this->extractVillage($message),
             'date' => $email->date(),
+        ]);
+
+        $this->publishIntervention($intervention);
+    }
+
+    public function createFromJson(string $message, string $date): void
+    {
+        Log::debug('INTERVENTION DEBUG - JSON IMPORT: ', [
+            'message' => $message,
+            'date' => $date,
+        ]);
+
+        // Remove double or more consecutive spaces
+        $message = Str::of($message)->replaceMatches('/ {2,}/', ' ');
+
+        Log::debug('INTERVENTION DEBUG - JSON MESSAGE: ', [
+            'message' => $message,
+        ]);
+
+        $intervention = Intervention::create([
+            'title' => $message,
+            'description' => $this->extractMission($message),
+            'type' => $this->extractType($message),
+            'village' => $this->extractVillage($message),
+            'date' => Carbon::parse($date, 'Europe/Zurich')->timezone('UTC'),
         ]);
 
         $this->publishIntervention($intervention);
