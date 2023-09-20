@@ -3,7 +3,7 @@ version: "3"
 services:
 
   app:
-    container_name: twill
+    container_name: sdis-ts
     restart: unless-stopped
     image: hub.devfactory.ch/devfactory/docker/dev/laravel-8.2:latest
     ports:
@@ -23,9 +23,9 @@ services:
       - ./:/app
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.twill.rule=Host(`twill.localhost`)"
-      - "traefik.http.routers.twill.entrypoints=web"
-      - "traefik.http.services.twill.loadbalancer.server.port=8000"
+      - "traefik.http.routers.sdists.rule=Host(`sdists.localhost`)"
+      - "traefik.http.routers.sdists.entrypoints=web"
+      - "traefik.http.services.sdists.loadbalancer.server.port=8000"
       - "--entrypoints.web.address=:8000"
 
 networks:
