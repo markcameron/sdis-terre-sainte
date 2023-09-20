@@ -81,7 +81,7 @@
                                     class="text-sm leading-6 text-gray-50 hover:text-gray-100">ECAWIN</a>
                             </li>
                             <li>
-                                <a href="https://map.cartolacote.ch/"
+                                <a href="https://map.cartolacote.ch/theme/eau_potable?lang=fr&tree_group_layers_points_interet=&tree_group_layers_lieux_geographiques=&baselayer_ref=plan_cadastral&baselayer_opacity=0&theme=eau_potable&map_x=2503834&map_y=1131535&map_zoom=2&tree_group_layers_eau_potable_esp=eau_hydrants_eca&tree_groups=eau_potable_esp"
                                     class="text-sm leading-6 text-gray-50 hover:text-gray-100">Cartolacôte</a>
                             </li>
 
