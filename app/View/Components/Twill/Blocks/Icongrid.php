@@ -39,6 +39,13 @@ class Icongrid extends TwillBlockComponent
                 ->fields([
                     Input::make()->name('icon'),
                     Input::make()->name('icon-color')->default('black'),
+                    Select::make()->name('icon-rotate')
+                        ->options([
+                            Option::make('0', '0°'),
+                            Option::make('rotate-45', '45°'),
+                            Option::make('rotate-90', '90°'),
+                            Option::make('rotate-180', '180°'),
+                        ]),
                     Input::make()->name('title'),
                     Input::make()->name('title-color')->default('black'),
                     Input::make()->rows(3)->name('body'),
