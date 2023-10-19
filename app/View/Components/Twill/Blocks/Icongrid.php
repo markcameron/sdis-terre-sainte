@@ -8,7 +8,6 @@ use A17\Twill\Services\Forms\Option;
 use A17\Twill\Services\Forms\Options;
 use A17\Twill\Services\Forms\Fields\Input;
 use A17\Twill\Services\Forms\Fields\Select;
-use A17\Twill\Services\Forms\Fields\Wysiwyg;
 use A17\Twill\Services\Forms\InlineRepeater;
 use A17\Twill\View\Components\Blocks\TwillBlockComponent;
 
@@ -42,6 +41,7 @@ class Icongrid extends TwillBlockComponent
                     Input::make()->name('icon-color')->default('black'),
                     Input::make()->name('title'),
                     Input::make()->name('title-color')->default('black'),
+                    Input::make()->rows(3)->name('body'),
                 ]),
         ]);
     }
