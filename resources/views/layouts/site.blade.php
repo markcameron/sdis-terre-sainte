@@ -39,7 +39,7 @@
                 <div class="flex items-center justify-between py-6 md:space-x-10">
                     <div class="flex justify-start lg:w-0 lg:flex-1">
                         <a href="{{ route('homepage') }}">
-                            <span class="sr-only">SDIS Terre Sainte</span>
+                            <span class="sr-only">SDIS Terre-Sainte</span>
                             <img src="{{ asset('images/sdis-logo.svg') }}" class="h-10 w-auto md:h-12 lg:h-16" alt="">
                         </a>
                     </div>
