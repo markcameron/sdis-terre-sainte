@@ -40,6 +40,7 @@ class PageController extends BaseModuleController
                 'text',
                 'image',
                 'app-title',
+                'app-icongrid',
             ])
         );
 
