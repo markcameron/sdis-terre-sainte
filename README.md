@@ -1,4 +1,4 @@
-<p align="center"><a href="https://www.sdis-ts.ch" target="_blank" rel="noopener noreferrer"><img src="https://www.sdis-ts.ch/images/sdis-logo.svg" alt="re-frame logo"></a></p>
+<p align="center"><a href="https://www.sdis-ts.ch" target="_blank" rel="noopener noreferrer"><img src="https://www.sdis-ts.ch/images/sdis-logo-black.svg" alt="re-frame logo"></a></p>
 
 ## Website for the SDIS Terre-Sainte
 
