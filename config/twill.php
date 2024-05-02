@@ -74,4 +74,10 @@ return [
             ],
         ],
     ],
+
+    'glide' => [
+        'default_params' => [
+            'q' => 100,
+        ],
+    ],
 ];
