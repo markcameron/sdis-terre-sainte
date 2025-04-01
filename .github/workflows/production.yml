@@ -40,7 +40,7 @@ jobs:
     - name: Create tar ball with artifacts
       run: tar -cf artifacts.tar public/ vendor/
     - name: Upload artifacts for deployment job
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
         path: artifacts.tar
