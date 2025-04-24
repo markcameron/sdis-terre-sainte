@@ -37,7 +37,7 @@ class PageController extends BaseModuleController
 
         $form->add(
             BlockEditor::make()->blocks([
-                'text',
+                'app-text',
                 'image',
                 'app-title',
                 'app-icongrid',
