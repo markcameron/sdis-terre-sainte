@@ -22,6 +22,7 @@ class Text extends TwillBlockComponent
                 ->name('text')
                 ->toolbarOptions([
                     ['header' => [2, 3, 4, 5, 6, false]],
+                    'align',
                     'bold',
                     'italic',
                     // 'underline',
