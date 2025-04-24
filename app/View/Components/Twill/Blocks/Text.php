@@ -20,6 +20,7 @@ class Text extends TwillBlockComponent
         return Form::make([
             Wysiwyg::make()
                 ->name('text')
+                ->allowSource()
                 ->toolbarOptions([
                     ['header' => [2, 3, 4, 5, 6, false]],
                     'align',
@@ -27,6 +28,7 @@ class Text extends TwillBlockComponent
                     'italic',
                     // 'underline',
                     // 'strike',
+                    'clean',
                     'blockquote',
                     "code-block",
                     'ordered',
@@ -34,7 +36,6 @@ class Text extends TwillBlockComponent
                     'hr',
                     'code',
                     'link',
-                    'clean',
                     'table',
                 ])
         ]);
