@@ -1,6 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
+
     <x-blade.homepage-hero></x-blade.homepage-hero>
     <x-blade.stats></x-blade.stats>
     <x-blade.news-recent></x-blade.news-recent>
