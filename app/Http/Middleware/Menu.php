@@ -19,7 +19,6 @@ class Menu
     public function handle(Request $request, Closure $next)
     {
         Navigation::make()
-            ->add('Portes Ouvertes', url('portes-ouvertes'))
             ->add('Le SDIS', url('presentation'))
             // , function (Section $section) {
             //     $section
