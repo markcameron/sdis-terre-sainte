@@ -29,6 +29,7 @@ class Footer extends Component
             'telephoneLink' => TwillAppSettings::get('site-settings.address.phone_number_link'),
             'email' => TwillAppSettings::get('site-settings.address.email_contact'),
             'address' => nl2br(TwillAppSettings::get('site-settings.address.address')),
+            'instagramUrl' => TwillAppSettings::get('site-settings.social.url_instagram'),
             'facebookUrl' => TwillAppSettings::get('site-settings.social.url_facebook'),
             'githubUrl' => TwillAppSettings::get('site-settings.social.url_github'),
         ]);
