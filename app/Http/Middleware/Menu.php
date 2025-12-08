@@ -20,6 +20,7 @@ class Menu
     {
         Navigation::make()
             ->add('Le SDIS', url('presentation'))
+            ->add('Concours FVSP 2026', 'https://www.fvsp-terre-sainte-2026.ch')
             // , function (Section $section) {
             //     $section
             //         ->add('Présentation', route('homepage'))
