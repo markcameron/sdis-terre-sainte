@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ContactRequest extends FormRequest
@@ -28,6 +29,7 @@ class ContactRequest extends FormRequest
             'lastName' => 'required',
             'email' => 'required|email',
             'message' => 'required',
+            'cf-turnstile-response' => ['required', Rule::turnstile()],
         ];
     }
 }

@@ -10,6 +10,9 @@
 
     <link rel="shortcut icon" href="/images/favicon.png">
     @vite(['resources/js/app.js'])
+
+    @yield('top-scripts')
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Matomo -->

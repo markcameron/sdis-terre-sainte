@@ -53,6 +53,12 @@
                     </x-blade.alert>
                 @endif
 
+                @if ($errors->has('cf-turnstile-response'))
+                    <div class="mt-6 rounded-[8px] bg-red-50 p-4 text-red-800">
+                        {{ $errors->first('cf-turnstile-response') }}
+                    </div>
+                @endif
+
                 <div class="mb-6 grid gap-6">
                     <div class="">
                         <label for="lastName" @class(['block text-lg', 'text-red-500' => $errors->has('lastName')])>Nom</label>
@@ -110,6 +116,12 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="mt-4 text-center">
+                        <x-turnstile
+                            data-theme="light"
+                            />
+                    </div>
                 </div>
                 <input type="submit" value="Envoyer"
                     class="rounded-md bg-primary px-12 py-3 text-xl font-bold text-white hover:bg-primary-dark">
@@ -117,4 +129,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('top-scripts')
+    @turnstileScripts()
 @endsection
