@@ -3,7 +3,7 @@ services:
   app:
     container_name: sdis-ts
     restart: unless-stopped
-    image: hub.devfactory.ch/devfactory/docker/dev/laravel-8.2:latest
+    image: hub.devfactory.ch/devfactory/docker/dev/laravel-8.4:latest
     ports:
       - '${VITE_PORT:-5174}:${VITE_PORT:-5174}'
     networks:
