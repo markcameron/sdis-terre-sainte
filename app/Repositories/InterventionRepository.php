@@ -29,4 +29,14 @@ class InterventionRepository extends ModuleRepository
             ->get()
             ->groupBy(fn ($row) => $row->date->format('Y-m'));
     }
+
+    public function groupedByYear()
+    {
+        return $this->model
+            ->published()
+            ->orderBy('date', 'desc')
+            ->get()
+            ->groupBy(fn ($row) => $row->date->format('Y'))
+            ->map(fn ($yearInterventions) => $yearInterventions->groupBy(fn ($row) => $row->date->format('Y-m')));
+    }
 }
