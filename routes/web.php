@@ -4,7 +4,6 @@ use Aws\Middleware;
 use App\Mail\InterventionExample;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
@@ -45,7 +44,7 @@ Route::get('documents', [DocumentsController::class, 'index'])->name('documents'
 Route::controller(ContactController::class)->group(function () {
     Route::name('contact.')->prefix('contact')->group(function () {
         Route::get('', 'index')->name('index');
-        Route::post('submit', 'submit')->name('submit')->middleware(ProtectAgainstSpam::class);
+        Route::post('submit', 'submit')->name('submit');
     });
 });
 
