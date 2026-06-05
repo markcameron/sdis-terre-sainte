@@ -102,7 +102,7 @@
     </header>
 
     <main>
-        <x-blade.banner></x-blade.banner>
+        {{-- <x-blade.banner></x-blade.banner> --}}
 
         @yield('content')
     </main>
