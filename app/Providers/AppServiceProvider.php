@@ -80,6 +80,11 @@ class AppServiceProvider extends ServiceProvider
             resolve(InterventionService::class)->createFromEmail($email);
         });
 
+        // Backfill: catches Gmail's forwarded-subject prefixes (e.g. "Fwd: INFO MOBILISATION").
+        Mailbox::subject('{prefix}INFO MOBILISATION', function (InboundEmail $email) {
+            resolve(InterventionService::class)->createFromEmail($email, isForwarded: true);
+        });
+
         Mailbox::fallback(function (InboundEmail $email) {
             // Just log it in DB `mailbox_inbound_emails`
         });

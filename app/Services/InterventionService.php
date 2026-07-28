@@ -11,7 +11,7 @@ use BeyondCode\Mailbox\InboundEmail;
 
 class InterventionService
 {
-    public function createFromEmail(InboundEmail $email): void
+    public function createFromEmail(InboundEmail $email, bool $isForwarded = false): void
     {
         Log::debug('INTERVENTION DEBUG - MAIL HTML: ', [
             'html' => $email->html()
@@ -26,15 +26,56 @@ class InterventionService
             'message' => $message,
         ]);
 
+        $date = $isForwarded
+            ? ($this->extractOriginalDateFromForward($email) ?? $email->date())
+            : $email->date();
+
         $intervention = Intervention::create([
             'title' => $message,
             'description' => $this->extractMission($message),
             'type' => $this->extractType($message),
             'village' => $this->extractVillage($message),
-            'date' => $email->date(),
+            'date' => $date,
         ]);
 
         $this->publishIntervention($intervention);
+    }
+
+    public function extractOriginalDateFromForward(InboundEmail $email): ?Carbon
+    {
+        try {
+            $text = $email->text();
+            if (! $text) {
+                return null;
+            }
+
+            // Gmail's forwarded-message marker, English or French client.
+            $markerPattern = '/-{3,}\s*(?:Forwarded message|Message transf[ée]r[ée])\s*-{3,}/isu';
+            if (! preg_match_all($markerPattern, $text, $markers, PREG_OFFSET_CAPTURE) || empty($markers[0])) {
+                return null;
+            }
+
+            // Take the LAST marker (innermost, closest to the original alert) to handle double-forwards.
+            $lastMarker = end($markers[0]);
+            $block = substr($text, $lastMarker[1] + strlen($lastMarker[0]), 600);
+
+            if (! preg_match('/^\s*Date\s*:\s*(.+)$/mi', $block, $dateMatch)) {
+                return null;
+            }
+
+            $rawDate = trim($dateMatch[1]);
+            $rawDate = preg_replace('/[\x{00A0}]+/u', ' ', $rawDate);              // NBSP normalization
+            $rawDate = preg_replace('/^\s*[A-Za-zÀ-ÿ]+\.?,?\s+/u', '', $rawDate); // drop leading weekday token
+            $rawDate = preg_replace('/\s+(at|à)\s+/iu', ' ', $rawDate);          // EN "at" / FR "à" connector
+
+            return Carbon::parseFromLocale($rawDate, 'fr', 'Europe/Zurich')?->timezone('UTC');
+        } catch (\Throwable $e) {
+            Log::warning('Could not extract original date from forwarded mobilisation email, falling back to envelope date', [
+                'exception' => $e->getMessage(),
+            ]);
+
+            return null;
+        }
     }
 
     public function createFromJson(string $message, string $date): void
