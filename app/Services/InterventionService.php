@@ -17,17 +17,22 @@ class InterventionService
             'html' => $email->html()
         ]);
 
-        // Remove new lines
-        $message = Str::replace(["\r", "\n"], ' ', $email->html());
-        // Remove double or more consecutive spaces
-        $message = Str::of($message)->replaceMatches('/ {2,}/', ' ');
+        $afterMarker = $isForwarded ? $this->findForwardedHeaderBlock($email) : null;
+
+        $message = $afterMarker !== null
+            ? ($this->extractForwardedBody($afterMarker) ?? $this->normalizeWhitespace($email->html()))
+            : $this->normalizeWhitespace($email->html());
+
+        // Safety net: `title` is a VARCHAR(200) column. Gmail's quoting markup (or any
+        // future unexpected format) could otherwise overflow it and crash the insert.
+        $message = Str::limit($message, 197);
 
         Log::debug('INTERVENTION DEBUG - MESSAGE: ', [
             'message' => $message,
         ]);
 
-        $date = $isForwarded
-            ? ($this->extractOriginalDateFromForward($email) ?? $email->date())
+        $date = $afterMarker !== null
+            ? ($this->extractDateFromForwardedBlock($afterMarker) ?? $email->date())
             : $email->date();
 
         $intervention = Intervention::create([
@@ -41,23 +46,52 @@ class InterventionService
         $this->publishIntervention($intervention);
     }
 
-    public function extractOriginalDateFromForward(InboundEmail $email): ?Carbon
+    private function normalizeWhitespace(string $text): string
+    {
+        // Remove new lines
+        $text = Str::replace(["\r", "\n"], ' ', $text);
+        // Remove double or more consecutive spaces
+        return (string) Str::of($text)->replaceMatches('/ {2,}/', ' ');
+    }
+
+    /**
+     * Locates Gmail's "Forwarded message" marker (English or French client) in the
+     * plain-text body and returns everything after it, or null if none is found.
+     * Uses the LAST marker occurrence so double-forwards resolve to the innermost,
+     * original alert rather than an intermediate forward.
+     */
+    private function findForwardedHeaderBlock(InboundEmail $email): ?string
+    {
+        $text = $email->text();
+        if (! $text) {
+            return null;
+        }
+
+        $markerPattern = '/-{3,}\s*(?:Forwarded message|Message transf[ée]r[ée])\s*-{3,}/isu';
+        if (! preg_match_all($markerPattern, $text, $markers, PREG_OFFSET_CAPTURE) || empty($markers[0])) {
+            return null;
+        }
+
+        $lastMarker = end($markers[0]);
+
+        return substr($text, $lastMarker[1] + strlen($lastMarker[0]));
+    }
+
+    /**
+     * The quoted "From/Date/Subject/To" header block Gmail inserts ends at the
+     * first blank line, after which the original message content begins.
+     */
+    private function extractForwardedBody(string $afterMarker): ?string
+    {
+        $parts = preg_split('/\n\s*\n/', ltrim($afterMarker, "\r\n"), 2);
+
+        return isset($parts[1]) ? $this->normalizeWhitespace(trim($parts[1])) : null;
+    }
+
+    private function extractDateFromForwardedBlock(string $afterMarker): ?Carbon
     {
         try {
-            $text = $email->text();
-            if (! $text) {
-                return null;
-            }
-
-            // Gmail's forwarded-message marker, English or French client.
-            $markerPattern = '/-{3,}\s*(?:Forwarded message|Message transf[ée]r[ée])\s*-{3,}/isu';
-            if (! preg_match_all($markerPattern, $text, $markers, PREG_OFFSET_CAPTURE) || empty($markers[0])) {
-                return null;
-            }
-
-            // Take the LAST marker (innermost, closest to the original alert) to handle double-forwards.
-            $lastMarker = end($markers[0]);
-            $block = substr($text, $lastMarker[1] + strlen($lastMarker[0]), 600);
+            $block = substr($afterMarker, 0, 600);
 
             if (! preg_match('/^\s*Date\s*:\s*(.+)$/mi', $block, $dateMatch)) {
                 return null;
